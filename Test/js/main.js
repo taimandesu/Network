@@ -1,3 +1,40 @@
+
+$(document).ready(function(){
+  var dataURL = 'https://api.twitter.com/1.1/search/tweets.json';
+  var photoData;
+
+  var getData = function(url) {
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      data: {
+        access_token: '＜アクセストークン＞',
+        count: 12
+      }
+    })
+    .done(function(data) {
+      photoData = data;
+      console.dir(photoData);
+    })
+    .fail(function() {
+      $('#gallery').text('データの読み込みに失敗しました。');
+    })
+  }
+
+  getData(dataURL);
+});
+
+
+$.ajax({
+  type: "get",
+  url: "https://api.twitter.com/1.1/statuses/user_timeline.json",
+  data: {name: 'chara'},
+  dataType: "json"
+  success: function(data, dataType){}
+});
+
+
+/*
 #!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7
 # -*- coding: utf-8 -*-
 
@@ -32,8 +69,4 @@ if req.status_code == 200:
         print('*******************************************')
 else:
     print("Failed: %d" % req.status_code)
-
-
-curl --request GET  --url 'https://api.twitter.com/1.1/search/tweets.json?q=from%3Atwitterdev&result_type=mixed&count=2'  --header 'authorization: OAuth oauth_consumer_key="HuoMcrQEcJ42DrPTSemgjcG7B",  oauth_nonce="generated-nonce", oauth_signature="generated-signature",  oauth_signature_method="HMAC-SHA1", oauth_timestamp="generated-timestamp",  oauth_token="1126760512346136576-HRchGRixDXCuPRvBAywquQbyQNBtOY", oauth_version="1.0"'
-
-curl -u 'f9GQNM1KtpaoJKBhfr6OdmIYa:mzLDUFC9Kv4aIvvNcV17fInLcvZUYqqBTIxIKOzPqgoqCExmX0' --data 'grant_type=client_credentials' 'https://api.twitter.com/oauth2/token'
+*/
