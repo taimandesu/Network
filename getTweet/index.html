@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <!-- ページタイトル -->
+    <title>Twitter APIを使ってTweet検索アプリを作ってみる</title>
+ 
+</head>
+<body>
+ 
+    <!-- UI部分 ↓ -->
+    <div id="twitter">
+        <div class="Countdown">
+            更新までの時間
+        </div>
+        <div class="Tweet表示エリア">
+        </div>
+    </div>
+ 
+    <!-- ライブラリの読み込み部分 ↓ -->
+    <!-- jqueryを読み込む -->
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+    <!-- OAuth認証のライブラリを読み込む -->
+    <script type="text/javascript" src="oauth-js/oauth.js"></script>
+    <script type="text/javascript" src="oauth-js/sha1.js"></script>
+
+    <!-- 処理部分を記述 ↓ -->
+    <script type="text/javascript" src="js/getTweet.js"></script>
+
+</body>
+</html>
