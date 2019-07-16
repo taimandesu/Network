@@ -80,7 +80,6 @@ function update(data){ // 引数(data)に取得したデータが入ってくる
     // for(var j = 0; j < searchCount; j++){
         //取得件数分繰り返し
         for( var i = 0; i < resultCount; i++ ) {
-            ////↓↓↓↓3回目あたりからエラー出る
             var name = searchResults[searchCount-1][i]["user"]["name"]; // ツイートした人の名前
             var id = searchResults[searchCount-1][i]["user"]["screen_name"]; // ツイートした人の名前
             //var imgsrc = searchResults[searchCount-1][i]["user"]["name"]["profile_image_url"]; // ツイートした人のプロフィール画像
