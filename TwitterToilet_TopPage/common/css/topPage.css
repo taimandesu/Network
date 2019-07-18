@@ -1,0 +1,44 @@
+body{
+  background:#4AB3F4;
+}
+
+.inicialButton{
+  text-align: center;
+  line-height: 1000px;
+}
+
+#modal{
+  display: none;
+}
+
+.btn_position{
+  text-align: center;
+}
+
+.btn{
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background:#4AB3F4;
+  transition: .4s;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background:#00ACEE;
+}
+
+.head{
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.description{
+  font-size: 20px;
+  text-align: justify;
+  text-justify:inter-ideograph;
+}
