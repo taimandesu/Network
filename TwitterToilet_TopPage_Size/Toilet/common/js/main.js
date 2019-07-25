@@ -10,6 +10,7 @@ posX = 0, //フォロワーのX座標
 posY = 0, //フォロワーのX座標
 screenY = 0,
 
+
 windowWidth = window.innerWidth,
 windowHeight = window.innerHeight,
 birdSpeedX = 2.0,
@@ -20,6 +21,9 @@ birdPosY0 = windowHeight / 5.0,
 count = 0; //うんこの数
 
 var $wrapper = document.querySelector('#js-wrapper'); //クローンの収納場所
+
+var imgSize = 20;//ウンチの大きさ
+var nowTextTotalLength = 0;//ツイートの分量
 
 ////tweet取得の変数
 var consumerKey    = "2XbZ8L11u91rOfXErQSNt0OmD";
@@ -52,7 +56,7 @@ function getTwitter() {
   if(searchCount == 0){
   }
   else{
-      keywords = 
+      keywords =
   }
   Sun Jun 30 09:15:30 +0000 2019
   since:2018-12-31_23:59:59_JST
@@ -92,6 +96,7 @@ function getTwitter() {
 
   //タイマー呼び出し
   refresh();
+
 }
 
 function getdata(data){ // 引数(data)に取得したデータが入ってくる
@@ -128,30 +133,30 @@ function getdata(data){ // 引数(data)に取得したデータが入ってく�
 ////鳥のアニメーション
 //毎フレーム実行
 function update(){
-	
+
 	birdPosX += birdSpeedX;
 	if(birdPosX > windowWidth || birdPosX < 0){
 		birdSpeedX = -birdSpeedX;
 	}
-	
+
 	time += 0.015;
 	var birdPosY = birdPosY0 + Math.sin(time) * 50;
-	
+
 	cursor.css({
     left: birdPosX - (cWidth / 2),
     top: birdPosY - (cWidth / 2)
     })
-	
+
 	poo.css({
     left: birdPosX - (pWidth / 2),
     top: birdPosY + pWidth * 4
     })
-	
+
 	requestAnimationFrame(update);
 }
 
 //クローン元っぽい
-var $cloneItem = document.querySelector('.poo'); 
+var $cloneItem = document.querySelector('.poo');
 
 //ツイート取得とともに呼び出し
 function createPoo()
@@ -161,30 +166,43 @@ function createPoo()
   var $popup = $clone.children[1]; //ポップアップ部分
 
   $wrapper.appendChild($clone);
-  TweenMax.to($clone, 2, {top:windowHeight - 100});
+  TweenMax.to($clone, 2, {top:windowHeight - 100});//ウンチの位置を調整
   TweenMax.to($pooimg, 0.5, {alpha:1});
+  //ウンチのサイズを初期化
+  imgSize = 20;
+  nowTextTotalLength = 0;
 
   // var text = searchResults;
   // //$popup.append(searchResults[searchCount-1][1]["text"]);
-
+  //orgWidth = 0;
+  //orgHeight = 0;
   for( var i = 0; i < resultCount; i++ ) {
     ////↓↓↓↓3回目あたりからエラー出る
     //var name = searchResults[searchCount-1][i]["user"]["name"]; // ツイートした人の名前
-    var id = searchResults[searchCount-1][i]["user"]["screen_name"]; // ツイートした人の名前
+    //var id = searchResults[searchCount-1][i]["user"]["screen_name"]; // ツイートした人の名前
     //var imgsrc = searchResults[searchCount-1][i]["user"]["name"]["profile_image_url"]; // ツイートした人のプロフィール画像
-    var text = searchResults[searchCount-1][i]["text"]; // ツイートの内容
+    var text = searchResults[searchCount-1][i]["text"]; // 前のツイートの内容
     //var updated = searchResults[searchCount-1][i]["created_at"]; // ツイートした時間
 
     // Tweet表示エリアに取得したデータを追加していく
-    $popup.append('@' + id + ':' + text);
+    //$popup.append('@' + id + ':' + text);
+
+    var textLength = text.length;//取得したtextの文字数
+    nowTextTotalLength += textLength;//ツイートの総文字数
+
+    $popup.append("(" + i + ")" + text);
+
   }
+  console.log(nowTextTotalLength);
+  imgSize = nowTextTotalLength * 0.2;//ツイートの量によってサイズを指定
+  TweenMax.to($pooimg, 0.5, {width:imgSize,height:imgSize * 0.8});//アニメーションでサイズを変更
 
   // console.log($clone);
   // console.log($clone.childNodes[5]);
   // console.log($clone.children[1]);
   // console.log($wrapper);
   //console.log($wrapper.children('$clone'));
-  
+
   //マウスオーバーでポップアップ表示、非表示
   $pooimg.addEventListener('mouseover', function() {
     TweenMax.to($popup, 0.5, {alpha:1});

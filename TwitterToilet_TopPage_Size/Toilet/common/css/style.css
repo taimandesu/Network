@@ -15,7 +15,7 @@ body{
     border-radius: 50%;
     position: absolute; /*bodyの一番左上になるように配置する*/
     top: 0;
-    left: 0; 
+    left: 0;
     posinter-events: none; /*他の要素がクリックできなくならないように*/
 }
 .cursor {
@@ -65,13 +65,13 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 999; 
-    
+
+    z-index: 999;
+
 }
 
 .pooimg {
     opacity: 0; /*透明度*/
-
 }
 .popup {
     opacity: 0;
@@ -84,7 +84,7 @@ body{
     background: #ffffff;
     color: rgb(0, 0, 0);
     font-weight: bold;
-    
-    z-index: 1000; 
+
+    z-index: 1000;
 
 }
