@@ -136,7 +136,13 @@ function update(){
 
 	birdPosX += birdSpeedX;
 	if(birdPosX > windowWidth || birdPosX < 0){
-		birdSpeedX = -birdSpeedX;
+    birdSpeedX = -birdSpeedX;
+    if(birdPosX > windowWidth){
+      cursor.addClass('flipped');
+    }
+    else{
+      cursor.removeClass('flipped');
+    }
 	}
 
 	time += 0.015;
