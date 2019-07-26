@@ -1,0 +1,47 @@
+.inicialButton{
+    position: absolute;
+    top: 300px;
+    width: 100%;
+    text-align: center;
+}
+.title{
+    font-size: 25px;
+    font-weight: bold;
+}
+#modal{
+    display: none;
+}
+.head{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.setsumei{
+    margin-bottom: 0;
+}
+.kari{
+    width: 100%;
+    text-align: center;
+}
+.description{
+    display: inline-block;
+    width: 70%;
+    font-size: 18px;
+    text-align: left;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 27px;
+    margin-top: 15px;
+    line-height: 40px;
+}
+.btn_position2{
+    position: relative;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+a:visited{
+    text-decoration: none;
+}

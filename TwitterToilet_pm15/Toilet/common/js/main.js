@@ -2,8 +2,6 @@
 var
 cursor = $(".cursor"),
 poo = $(".poo"),
-btn_pos = $("btn_position"),
-btn = $("btn"),
 cWidth = 20, //カーソルの大きさ
 pWidth = 10, //うんちの大きさ
 mouseX = 0, //マウスのX座標
@@ -41,24 +39,10 @@ var resultCount = 0;
 var searchCount = 0;
 var searchResults = new Array();
 
-var isFlushed = false;
 
-
-// ウィンドウを読み込み後に実行される
-$(window).on('load', function(){
-  getTwitter();
-  setTimeout(function(){createPoo()},2000);
-  btn_pos.css({
-    left: windowWidth - 500,
-    top: 100
-  })
-
-  requestAnimationFrame(update); //アニメーション呼び出し
-});
 
 ////tweet取得
 // Twitter APIを使用してTweetを取得する部分
-
 function getTwitter() {
   var action = url;
 
@@ -153,6 +137,7 @@ function update(){
 	birdPosX += birdSpeedX;
 	if(birdPosX > windowWidth || birdPosX < 0){
     birdSpeedX = -birdSpeedX;
+    
     if(birdPosX > windowWidth){
       cursor.addClass('flipped');
     }
@@ -177,11 +162,6 @@ function update(){
 	requestAnimationFrame(update);
 }
 
-$("btn").on('click', function() {
-  isFlushed = true;
-  console.log("isFlushed");
-})
-
 //クローン元っぽい
 var $cloneItem = document.querySelector('.poo');
 
@@ -193,9 +173,7 @@ function createPoo()
   var $popup = $clone.children[1]; //ポップアップ部分
 
   $wrapper.appendChild($clone);
-  console.log($wrapper.firstChild);
-  
-  TweenMax.to($clone, 2, {top:windowHeight - 100});//ウンチの位置を調整
+  TweenMax.to($clone, 2, {bottom:100});//ウンチの位置を調整
   TweenMax.to($pooimg, 0.5, {alpha:1});
   //ウンチのサイズを初期化
   imgSize = 20;
@@ -254,3 +232,21 @@ function refresh(){
 function pooTimer(){
   setTimeout(function(){createPoo()},20000);
 }
+
+//リロードで流す
+$('.flush').click(function(){
+  $( '#sound-file' ).get(0).play();
+  TweenMax.to($wrapper.find($clone), 2, {left:windowWidth + 100});//ウンチながす
+  setTimeout(function(){location.reload()}, 2500);
+  
+  //$pooimg.remove();
+  //$popup.remove();
+});
+
+// ウィンドウを読み込み後に実行される
+$(window).on('load', function(){
+  getTwitter();
+  setTimeout(function(){createPoo()},2000);
+
+  requestAnimationFrame(update); //アニメーション呼び出し
+});
